@@ -64,8 +64,20 @@ const Text = styled.span`
     font-size: 12px;
 `;
 
-const QuestionBox = ({ questionNo, questionText, setStartAnswerBox }) => {
+const QuestionBox = ({
+    questionNo,
+    questionText,
+    setStartAnswerBox,
+    isAnswerBoxComplete,
+}) => {
     const [remainingTime, setRemainingTime] = useState(20);
+
+    useEffect(() => {
+        if (isAnswerBoxComplete) {
+            setRemainingTime(20);
+            setStartAnswerBox(false);
+        }
+    }, [isAnswerBoxComplete]);
 
     useEffect(() => {
         const countdownInterval = setInterval(() => {

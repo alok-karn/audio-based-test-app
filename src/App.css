@@ -2,7 +2,7 @@
   
 
 .App {
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   row-gap: 15px;
