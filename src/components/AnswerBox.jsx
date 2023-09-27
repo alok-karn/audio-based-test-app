@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { PiTimerBold } from "react-icons/pi";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import MicIcon from "./MicIcon";
+import CountdownTimer from "./CountdownTimer";
 
 const AnswerContainer = styled.div`
     background-color: ${({ startAnswerBox, remainingTime }) =>
         !startAnswerBox || remainingTime === 0
             ? "white"
             : remainingTime < 10
-            ? "#ebac72"
+            ? "#f09e51"
             : "#b7d5f7"};
     padding: 20px;
     border-radius: 5px;
@@ -21,6 +22,7 @@ const AnswerContainer = styled.div`
 `;
 
 const TopBox = styled.div``;
+
 const BottomBox = styled.div`
     display: flex;
     align-items: center;
@@ -60,7 +62,7 @@ const TimeLeft = styled.span`
 `;
 
 const MicContainer = styled.div`
-    /* background-color: #f5f5f5; */
+    background-color: #f5f5f5;
     padding: 20px;
     border-radius: 5px;
     width: 500px;
@@ -68,6 +70,7 @@ const MicContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 `;
 const WarningContainer = styled.div`
     display: flex;
@@ -82,6 +85,34 @@ const Warning = styled.span`
     font-weight: 700;
     font-size: 14px;
     color: #e42f2f;
+`;
+
+const LoaderComponent = styled.svg`
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    /* z-index: -100; */
+    /* position: relative;
+    top: 100px; */
+`;
+
+const dash = keyframes`
+    to {
+        stroke-dashoffset: 0;
+    }
+`;
+
+const Circle = styled.circle`
+    fill: none;
+    stroke: #4b90e9;
+    stroke-width: 12;
+    stroke-dasharray: 283;
+    stroke-dashoffset: ${({ remainingTime }) => (remainingTime / 60) * 283};
+    animation: ${({ startAnswerBox }) => startAnswerBox && dash} 60s linear
+        forwards;
 `;
 
 const AnswerBox = ({ startAnswerBox, setIsAnswerBoxComplete }) => {
@@ -114,7 +145,37 @@ const AnswerBox = ({ startAnswerBox, setIsAnswerBoxComplete }) => {
             remainingTime={remainingTime}>
             <TopBox>
                 <MicContainer>
-                    <MicIcon />
+                    {startAnswerBox ? (
+                        <>
+                            {/* <LoaderComponent
+                                remainingTime={remainingTime}
+                                // startAnswerBox={startAnswerBox}
+                                xmlns="http://www.w3.org/2000/svg">
+                                <Circle
+                                    cx="50"
+                                    cy="50"
+                                    r="40"
+                                    remainingTime={remainingTime}
+                                    startAnswerBox={!startAnswerBox}
+                                />
+                            </LoaderComponent> */}
+                            <MicIcon startAnswerBox={startAnswerBox} />
+                        </>
+                    ) : (
+                        <MicIcon startAnswerBox={startAnswerBox} />
+                        // <LoaderComponent
+                        //     remainingTime={remainingTime}
+                        //     // startAnswerBox={startAnswerBox}
+                        //     xmlns="http://www.w3.org/2000/svg">
+                        //     <Circle
+                        //         cx="50"
+                        //         cy="50"
+                        //         r="40"
+                        //         remainingTime={remainingTime}
+                        //         // startAnswerBox={startAnswerBox}
+                        //     />
+                        // </LoaderComponent>
+                    )}
                 </MicContainer>
             </TopBox>
             <BottomBox>

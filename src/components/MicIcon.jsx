@@ -26,6 +26,7 @@ const MicIconContainer = styled.div`
     align-items: center;
     user-select: none;
     overflow: hidden;
+    z-index: 999;
     /* background-color: #77b9f7; */
 
     .ripple {
@@ -47,6 +48,8 @@ const MicIconContainer = styled.div`
     }
 `;
 
+const disabledColor = "#747474";
+
 const Circle = styled.div`
     width: 70px;
     height: 70px;
@@ -56,13 +59,17 @@ const Circle = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 999;
-    background-color: #77b9f7;
+    /* background-color: ${({ startAnswerBox }) =>
+        startAnswerBox && startAnswerBox ? "#77b9f7" : disabledColor}; */
 `;
 
-const MicIcon = () => {
+const MicIcon = ({ startAnswerBox }) => {
     return (
         <MicIconContainer>
-            <Circle>
+            <Circle
+                style={{
+                    background: startAnswerBox ? "#77b9f7" : disabledColor,
+                }}>
                 <IoMicOutline
                     size={40}
                     color="white"
@@ -71,7 +78,7 @@ const MicIcon = () => {
                         // height: "50px",
                         zIndex: 999,
                         borderRadius: "50%",
-                        background: "#77b9f7",
+                        background: startAnswerBox ? "#77b9f7" : disabledColor,
                     }}
                 />
             </Circle>

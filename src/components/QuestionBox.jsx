@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PiTimerBold } from "react-icons/pi";
 
 const QuestionContainer = styled.div`
-    background-color: ${({ isSpeakNow }) => (isSpeakNow ? "white" : "#76b1f3")};
+    background-color: ${({ isSpeakNow }) => (isSpeakNow ? "white" : "#B7D5F7")};
     padding: 20px;
     /* border: 1px solid #ddd; */
     /* border-radius: 5px; */
