@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { PiTimerBold } from "react-icons/pi";
 import styled, { keyframes } from "styled-components";
 import MicIcon from "./MicIcon";
-import CountdownTimer from "./CountdownTimer";
 
 const AnswerContainer = styled.div`
     background-color: ${({ startAnswerBox, remainingTime }) =>

@@ -7,12 +7,17 @@ const rippleAnimation = keyframes`
     transform: scale(0);
     /* background: radial-gradient(circle, #77b9f7 20%, transparent 5%); */
     background: #0780f1;
+    background: ${({ startAnswerBox }) =>
+        startAnswerBox ? "#0780f1" : "#272727"};
+   
     opacity: 1;
   }
   100% {
     transform: scale(3);
     /* background: radial-gradient(circle, #0077e5 20%, transparent 5%); */
-    background: #1271cac0;
+    /* background: #1271cac0; */
+    background: ${({ startAnswerBox }) =>
+        startAnswerBox ? "#1271cac0" : "#393c3f"};
     opacity: 0;
   }
 `;
@@ -36,7 +41,6 @@ const MicIconContainer = styled.div`
         background: radial-gradient(circle, white 20%, transparent 2%);
         border-radius: 50%;
         animation: ${rippleAnimation} 2s linear infinite;
-        /* z-index: ; */
     }
 
     .ripple:nth-child(2) {
@@ -82,9 +86,21 @@ const MicIcon = ({ startAnswerBox }) => {
                     }}
                 />
             </Circle>
-            <span className="ripple"></span>
-            <span className="ripple"></span>
-            <span className="ripple"></span>
+            <span
+                className="ripple"
+                style={{
+                    background: startAnswerBox ? "#1271cac0" : "#393c3f",
+                }}></span>
+            <span
+                className="ripple"
+                style={{
+                    background: startAnswerBox ? "#1271cac0" : "#393c3f",
+                }}></span>
+            <span
+                className="ripple"
+                style={{
+                    background: startAnswerBox ? "#1271cac0" : "#393c3f",
+                }}></span>
         </MicIconContainer>
     );
 };
